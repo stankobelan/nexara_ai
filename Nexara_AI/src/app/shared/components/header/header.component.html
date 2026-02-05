@@ -1,0 +1,40 @@
+<header class="header">
+  <div class="container">
+    <nav class="nav" role="navigation" aria-label="Hlavná navigácia">
+      <a routerLink="/" class="logo" aria-label="Domov">
+        <span class="logo-text">Nexara<span class="logo-highlight">AI</span></span>
+      </a>
+      
+      <ul class="nav-list">
+        <li>
+          <a 
+            routerLink="/" 
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="nav-link"
+          >
+            Domov
+          </a>
+        </li>
+        <li>
+          <a 
+            routerLink="/projects" 
+            routerLinkActive="active"
+            class="nav-link"
+          >
+            Projekty
+          </a>
+        </li>
+        <li>
+          <a 
+            routerLink="/contact" 
+            routerLinkActive="active"
+            class="nav-link"
+          >
+            Kontakt
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
