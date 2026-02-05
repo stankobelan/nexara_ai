@@ -57,7 +57,7 @@ export class ServicesComponent {
         title: 'Full-Stack Aplikácia',
         duration: '4-6 týždňov',
         output: 'Kompletná webová aplikácia',
-        description: 'Vývoj kompletnej webové aplikácie s backendom, frontendom a databázou.',
+        description: 'Vývoj kompletnej webovej aplikácie s backendom, frontendom a databázou.',
         price: 'Od 5000 €'
       }
     ],
