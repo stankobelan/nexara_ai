@@ -12,15 +12,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+
+
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
       - name: Install dependencies
+        working-directory: Nexara_AI
         run: npm ci
 
       - name: Build Angular app
+        working-directory: Nexara_AI
         run: npm run build -- --configuration=production
 
       - name: Deploy to Firebase
