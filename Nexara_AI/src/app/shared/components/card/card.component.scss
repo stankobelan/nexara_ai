@@ -1,0 +1,26 @@
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  transition: all var(--transition-base);
+}
+
+.card-hoverable {
+  cursor: pointer;
+
+  &:hover {
+    border-color: var(--lime);
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:focus-visible {
+    border-color: var(--lime);
+    box-shadow: var(--shadow-glow);
+  }
+}
