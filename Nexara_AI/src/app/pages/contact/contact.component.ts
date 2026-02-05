@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { CardComponent } from '../../shared/components/card/card.component';
 import { ButtonComponent } from '../../shared/components/button/button.component';
 import { ToastService } from '../../shared/components/toast/toast.service';
+import { FirebaseService } from '../../core/services/firebase.service';
 
 @Component({
   selector: 'app-contact',
@@ -14,6 +15,7 @@ import { ToastService } from '../../shared/components/toast/toast.service';
 export class ContactComponent {
   private fb = inject(FormBuilder);
   private toastService = inject(ToastService);
+  private firebaseService = inject(FirebaseService);
 
   isSubmitting = signal(false);
   submitSuccess = signal(false);
@@ -71,9 +73,15 @@ export class ContactComponent {
     this.isSubmitting.set(true);
 
     try {
-      // We'll integrate Firebase in the next task
-      // For now, simulate submission
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      const formData = this.contactForm.value;
+      
+      await this.firebaseService.saveContactMessage({
+        name: formData.name,
+        email: formData.email,
+        topic: formData.topic,
+        message: formData.message,
+        company: formData.company || undefined
+      }, 'contact');
 
       this.submitSuccess.set(true);
       this.toastService.success('Ďakujem, ozvem sa do 24–48 hodín.');
@@ -87,4 +95,5 @@ export class ContactComponent {
     }
   }
 }
+
 

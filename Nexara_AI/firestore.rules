@@ -1,0 +1,56 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Contact messages collection
+    match /contact_messages/{document=**} {
+      // Allow only create operations
+      allow create: if request.auth == null
+        && validateContactMessage();
+      
+      // Deny all read, update, and delete operations
+      allow read, update, delete: if false;
+    }
+    
+    // Validation function for contact messages
+    function validateContactMessage() {
+      let data = request.resource.data;
+      
+      return 
+        // Required fields must exist
+        data.keys().hasAll(['name', 'email', 'topic', 'message', 'createdAt', 'userAgent', 'source'])
+        
+        // Name validation (2-80 characters)
+        && data.name is string
+        && data.name.size() >= 2
+        && data.name.size() <= 80
+        
+        // Email validation (basic format check)
+        && data.email is string
+        && data.email.matches('.*@.*\\..*')
+        && data.email.size() <= 254
+        
+        // Topic validation (must be one of the allowed values)
+        && data.topic is string
+        && data.topic in ['AI', 'Web', 'Voice', 'Other']
+        
+        // Message validation (20-2000 characters)
+        && data.message is string
+        && data.message.size() >= 20
+        && data.message.size() <= 2000
+        
+        // Company is optional, but if present must be <= 120 characters
+        && (!data.keys().hasAny(['company']) || (data.company is string && data.company.size() <= 120))
+        
+        // createdAt must be server timestamp
+        && data.createdAt == request.time
+        
+        // userAgent must be string
+        && data.userAgent is string
+        
+        // Source must be 'home' or 'contact'
+        && data.source is string
+        && data.source in ['home', 'contact'];
+    }
+  }
+}
