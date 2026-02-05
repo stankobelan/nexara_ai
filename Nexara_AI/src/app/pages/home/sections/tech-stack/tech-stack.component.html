@@ -1,0 +1,12 @@
+<section class="tech-stack section">
+  <div class="container container-narrow">
+    <h2 class="section-title">Tech Stack</h2>
+    <p class="section-subtitle">Technológie, s ktorými pracujem</p>
+    
+    <div class="tech-grid">
+      @for (tech of technologies; track tech) {
+        <app-chip [label]="tech" [selected]="false" />
+      }
+    </div>
+  </div>
+</section>

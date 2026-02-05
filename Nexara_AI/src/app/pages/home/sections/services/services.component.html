@@ -1,0 +1,27 @@
+<section class="services section">
+  <div class="container">
+    <h2 class="section-title">Produktizované služby</h2>
+    <p class="section-subtitle">Fixná cena, jasný výstup, rýchle dodanie</p>
+    
+    <div class="services-grid">
+      @for (service of services; track service.title) {
+        <app-card>
+          <div class="service-card">
+            <h3 class="service-title">{{ service.title }}</h3>
+            <div class="service-meta">
+              <div class="meta-item">
+                <span class="meta-label">Trvanie:</span>
+                <span class="meta-value">{{ service.duration }}</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Výstup:</span>
+                <span class="meta-value lime">{{ service.output }}</span>
+              </div>
+            </div>
+            <p class="service-description">{{ service.description }}</p>
+          </div>
+        </app-card>
+      }
+    </div>
+  </div>
+</section>

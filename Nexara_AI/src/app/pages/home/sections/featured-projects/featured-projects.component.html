@@ -1,0 +1,30 @@
+<section class="featured section">
+  <div class="container">
+    <h2 class="section-title">Vybrané projekty</h2>
+    <p class="section-subtitle">Najnovšie projekty s AI, Web a Voice technológiami</p>
+    
+    <div class="projects-grid">
+      @for (project of featuredProjects(); track project.id) {
+        <a [routerLink]="['/projects', project.slug]" class="project-card-link">
+          <app-card [hoverable]="true">
+            <div class="project-card">
+              <div class="project-tags">
+                @for (tag of project.tags; track tag) {
+                  <app-chip [label]="tag" [selected]="false" />
+                }
+              </div>
+              <h3 class="project-title">{{ project.title }}</h3>
+              <p class="project-description">{{ project.shortDescription }}</p>
+            </div>
+          </app-card>
+        </a>
+      }
+    </div>
+    
+    <div class="section-footer">
+      <a routerLink="/projects" class="view-all-link">
+        Pozrieť všetky projekty →
+      </a>
+    </div>
+  </div>
+</section>
