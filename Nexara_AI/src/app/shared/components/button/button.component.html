@@ -1,0 +1,8 @@
+<button
+  [type]="type()"
+  [disabled]="disabled()"
+  [attr.aria-label]="ariaLabel()"
+  [class]="'btn btn-' + variant()"
+>
+  <ng-content></ng-content>
+</button>

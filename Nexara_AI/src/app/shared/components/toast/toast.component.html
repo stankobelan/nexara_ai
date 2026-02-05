@@ -1,0 +1,18 @@
+<div class="toast-container" role="region" aria-live="polite" aria-label="Oznámenia">
+  @for (toast of toasts(); track toast.id) {
+    <div 
+      [class]="'toast toast-' + toast.type"
+      role="alert"
+    >
+      <div class="toast-message">{{ toast.message }}</div>
+      <button
+        type="button"
+        class="toast-close"
+        (click)="remove(toast.id)"
+        aria-label="Zavrieť oznámenie"
+      >
+        ×
+      </button>
+    </div>
+  }
+</div>
