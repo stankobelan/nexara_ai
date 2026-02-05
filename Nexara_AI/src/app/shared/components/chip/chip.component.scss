@@ -2,22 +2,25 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem 1rem;
+  padding: 0.625rem 1.25rem;
   font-family: var(--font-mono);
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   font-weight: 500;
   color: var(--muted);
-  background: transparent;
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-xl);
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition: all var(--transition-base);
   white-space: nowrap;
+  box-shadow: var(--shadow-sm);
 
   &:hover {
     color: var(--lime);
     border-color: var(--lime);
-    background: rgba(182, 255, 59, 0.05);
+    background: rgba(182, 255, 59, 0.08);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md), 0 0 15px rgba(182, 255, 59, 0.2);
   }
 
   &:focus-visible {
@@ -28,11 +31,12 @@
 
 .chip-selected {
   color: var(--bg);
-  background: var(--lime);
+  background: linear-gradient(135deg, var(--lime) 0%, var(--lime2) 100%);
   border-color: var(--lime);
+  box-shadow: var(--shadow-glow);
 
   &:hover {
-    background: var(--lime2);
+    background: linear-gradient(135deg, var(--lime2) 0%, var(--lime) 100%);
     border-color: var(--lime2);
     color: var(--bg);
   }

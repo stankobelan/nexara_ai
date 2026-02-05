@@ -3,11 +3,31 @@
     <h2 class="section-title">Produktizované služby</h2>
     <p class="section-subtitle">Fixná cena, jasný výstup, rýchle dodanie</p>
     
+    <div class="tabs-container">
+      <div class="tabs">
+        @for (tab of tabs; track tab.id) {
+          <button 
+            class="tab-button"
+            [class.active]="activeTab() === tab.id"
+            (click)="setActiveTab(tab.id)"
+            type="button"
+          >
+            {{ tab.label }}
+          </button>
+        }
+      </div>
+    </div>
+
     <div class="services-grid">
-      @for (service of services; track service.title) {
-        <app-card>
+      @for (service of currentServices; track service.title) {
+        <app-card [hoverable]="true">
           <div class="service-card">
-            <h3 class="service-title">{{ service.title }}</h3>
+            <div class="service-header">
+              <h3 class="service-title">{{ service.title }}</h3>
+              @if (service.price) {
+                <div class="service-price">{{ service.price }}</div>
+              }
+            </div>
             <div class="service-meta">
               <div class="meta-item">
                 <span class="meta-label">Trvanie:</span>
@@ -19,6 +39,9 @@
               </div>
             </div>
             <p class="service-description">{{ service.description }}</p>
+            <div class="service-footer">
+              <app-button variant="primary">Objednať</app-button>
+            </div>
           </div>
         </app-card>
       }
