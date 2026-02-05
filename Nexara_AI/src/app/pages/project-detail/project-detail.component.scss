@@ -1,3 +1,134 @@
 .project-detail {
-  padding: var(--spacing-xl);
+  padding: var(--spacing-3xl) 0;
+  min-height: 80vh;
 }
+
+.breadcrumb {
+  margin-bottom: var(--spacing-xl);
+}
+
+.breadcrumb-link {
+  color: var(--lime);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+
+  &:hover {
+    color: var(--lime2);
+  }
+}
+
+.project-header {
+  margin-bottom: var(--spacing-2xl);
+}
+
+.project-tags {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+  margin-bottom: var(--spacing-lg);
+}
+
+.project-title {
+  margin-bottom: var(--spacing-md);
+}
+
+.project-subtitle {
+  font-size: 1.25rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.project-content {
+  h2 {
+    font-size: 1.75rem;
+    margin-bottom: var(--spacing-lg);
+  }
+}
+
+.project-full-description {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--muted);
+  margin-bottom: var(--spacing-xl);
+}
+
+.project-actions {
+  display: flex;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.related-projects {
+  margin-top: var(--spacing-3xl);
+}
+
+.section-title {
+  margin-bottom: var(--spacing-xl);
+}
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.related-card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.related-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  min-height: 180px;
+}
+
+.related-title {
+  font-size: 1.25rem;
+  color: var(--text);
+  margin: 0;
+}
+
+.related-description {
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0;
+  flex: 1;
+}
+
+.related-tags {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+.not-found {
+  padding: var(--spacing-3xl) 0;
+  text-align: center;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  h1 {
+    margin-bottom: var(--spacing-md);
+  }
+
+  p {
+    font-size: 1.125rem;
+    margin-bottom: var(--spacing-xl);
+  }
+}
+
+@media (max-width: 768px) {
+  .related-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

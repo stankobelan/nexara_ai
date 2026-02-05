@@ -1,5 +1,68 @@
-<div class="project-detail">
-  <h1>Detail projektu</h1>
-  <p>Slug: {{ slug() }}</p>
-  <p>Placeholder for Project detail</p>
-</div>
+@if (project(); as proj) {
+  <div class="project-detail">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a routerLink="/projects" class="breadcrumb-link">← Späť na projekty</a>
+      </nav>
+
+      <header class="project-header">
+        <div class="project-tags">
+          @for (tag of proj.tags; track tag) {
+            <app-chip [label]="tag" [selected]="true" />
+          }
+        </div>
+        <h1 class="project-title">{{ proj.title }}</h1>
+        <p class="project-subtitle">{{ proj.shortDescription }}</p>
+      </header>
+
+      <app-card>
+        <div class="project-content">
+          <h2>O projekte</h2>
+          <p class="project-full-description">{{ proj.fullDescription }}</p>
+          
+          @if (proj.demoUrl) {
+            <div class="project-actions">
+              <app-button variant="primary" [attr.href]="proj.demoUrl" [attr.target]="'_blank'">
+                Pozrieť demo
+              </app-button>
+            </div>
+          }
+        </div>
+      </app-card>
+
+      @if (relatedProjects().length > 0) {
+        <section class="related-projects">
+          <h2 class="section-title">Podobné projekty</h2>
+          <div class="related-grid">
+            @for (related of relatedProjects(); track related.id) {
+              <a [routerLink]="['/projects', related.slug]" class="related-card-link">
+                <app-card [hoverable]="true">
+                  <div class="related-card">
+                    <h3 class="related-title">{{ related.title }}</h3>
+                    <p class="related-description">{{ related.shortDescription }}</p>
+                    <div class="related-tags">
+                      @for (tag of related.tags; track tag) {
+                        <app-chip [label]="tag" [selected]="false" />
+                      }
+                    </div>
+                  </div>
+                </app-card>
+              </a>
+            }
+          </div>
+        </section>
+      }
+    </div>
+  </div>
+} @else {
+  <div class="not-found">
+    <div class="container">
+      <h1>Projekt sa nenašiel</h1>
+      <p>Zadaný projekt neexistuje.</p>
+      <app-button variant="primary" [routerLink]="['/projects']">
+        Späť na projekty
+      </app-button>
+    </div>
+  </div>
+}
+

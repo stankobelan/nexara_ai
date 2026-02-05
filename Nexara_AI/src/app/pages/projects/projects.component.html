@@ -1,4 +1,43 @@
-<div class="projects">
-  <h1>Projekty</h1>
-  <p>Placeholder for Projects list with filter chips</p>
+<div class="projects-page">
+  <div class="container">
+    <header class="page-header">
+      <h1 class="page-title">Projekty</h1>
+      <p class="page-subtitle">Portfólio projektov s AI, Web a Voice technológiami</p>
+    </header>
+
+    <div class="filters">
+      @for (filter of filters; track filter.value) {
+        <app-chip
+          [label]="filter.label"
+          [selected]="selectedFilter() === filter.value"
+          (chipClick)="selectFilter(filter.value)"
+        />
+      }
+    </div>
+
+    <div class="projects-grid">
+      @for (project of filteredProjects(); track project.id) {
+        <a [routerLink]="['/projects', project.slug]" class="project-card-link">
+          <app-card [hoverable]="true">
+            <div class="project-card">
+              <div class="project-tags">
+                @for (tag of project.tags; track tag) {
+                  <app-chip [label]="tag" [selected]="false" />
+                }
+              </div>
+              <h3 class="project-title">{{ project.title }}</h3>
+              <p class="project-description">{{ project.shortDescription }}</p>
+            </div>
+          </app-card>
+        </a>
+      }
+    </div>
+
+    @if (filteredProjects().length === 0) {
+      <div class="empty-state">
+        <p>Žiadne projekty v tejto kategórii.</p>
+      </div>
+    }
+  </div>
 </div>
+
