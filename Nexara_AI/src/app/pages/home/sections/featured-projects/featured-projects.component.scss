@@ -25,13 +25,42 @@
   text-decoration: none;
   color: inherit;
   display: block;
+  transition: transform var(--transition-base);
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--lime);
+    outline-offset: 4px;
+    border-radius: var(--radius-lg);
+  }
 }
 
 .project-card {
-  min-height: 200px;
+  min-height: 220px;
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--lime) 0%, #ffd700 100%);
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+    opacity: 0;
+    transition: opacity var(--transition-base);
+  }
+
+  .project-card-link:hover &::before {
+    opacity: 1;
+  }
 }
 
 .project-tags {
@@ -44,6 +73,11 @@
   font-size: 1.5rem;
   color: var(--text);
   margin: 0;
+  transition: color var(--transition-fast);
+
+  .project-card-link:hover & {
+    color: var(--lime);
+  }
 }
 
 .project-description {

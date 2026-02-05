@@ -3,10 +3,10 @@
   align-items: center;
   justify-content: center;
   gap: var(--spacing-sm);
-  padding: 0.75rem 1.5rem;
+  padding: 0.875rem 1.75rem;
   font-family: var(--font-primary);
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.5;
   text-align: center;
   cursor: pointer;
@@ -14,6 +14,8 @@
   border-radius: var(--radius-md);
   transition: all var(--transition-base);
   white-space: nowrap;
+  position: relative;
+  overflow: hidden;
 
   &:disabled {
     opacity: 0.5;
@@ -27,15 +29,28 @@
 }
 
 .btn-primary {
-  background: var(--lime);
+  background: linear-gradient(to right, var(--lime) 0%, var(--lime2) 100%);
   color: var(--bg);
   border-color: var(--lime);
+  box-shadow: var(--shadow-md);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to left, var(--lime2) 0%, var(--lime) 100%);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+  }
 
   &:hover:not(:disabled) {
-    background: var(--lime2);
     border-color: var(--lime2);
-    box-shadow: var(--shadow-glow);
-    transform: translateY(-1px);
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
+    transform: translateY(-2px);
+
+    &::before {
+      opacity: 1;
+    }
   }
 
   &:active:not(:disabled) {
@@ -47,12 +62,25 @@
   background: transparent;
   color: var(--lime);
   border-color: var(--lime);
+  box-shadow: var(--shadow-sm);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(182, 255, 59, 0.12);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+  }
 
   &:hover:not(:disabled) {
-    background: rgba(182, 255, 59, 0.1);
     border-color: var(--lime2);
-    box-shadow: var(--shadow-glow);
-    transform: translateY(-1px);
+    box-shadow: var(--shadow-md), var(--shadow-glow);
+    transform: translateY(-2px);
+
+    &::before {
+      opacity: 1;
+    }
   }
 
   &:active:not(:disabled) {
