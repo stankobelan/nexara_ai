@@ -51,7 +51,7 @@ export const PROJECTS: Project[] = [
     title: 'Voice Training Platform',
     slug: 'voice-training-platform',
     shortDescription: 'Platforma pre tréning a testovanie voice agentov',
-    fullDescription: 'Interná platforma pre trénovanie, testovanie a monitorovanie výkonnosti voice agentov. Obsahuje nahrávanie konverzácií, analýzu sentimentu, reporting a A/B testovanie rôznych konfiguácií.',
+    fullDescription: 'Interná platforma pre trénovanie, testovanie a monitorovanie výkonnosti voice agentov. Obsahuje nahrávanie konverzácií, analýzu sentimentu, reporting a A/B testovanie rôznych konfigurácií.',
     tags: ['Voice', 'Web'],
     featured: false
   }

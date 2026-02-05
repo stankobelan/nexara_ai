@@ -19,14 +19,6 @@
         <div class="project-content">
           <h2>O projekte</h2>
           <p class="project-full-description">{{ proj.fullDescription }}</p>
-          
-          @if (proj.demoUrl) {
-            <div class="project-actions">
-              <app-button variant="primary" [attr.href]="proj.demoUrl" [attr.target]="'_blank'">
-                Pozrieť demo
-              </app-button>
-            </div>
-          }
         </div>
       </app-card>
 
