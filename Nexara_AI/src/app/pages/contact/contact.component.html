@@ -1,4 +1,145 @@
-<div class="contact">
-  <h1>Kontakt</h1>
-  <p>Placeholder for Contact form</p>
+<div class="contact-page">
+  <div class="container container-narrow">
+    <header class="page-header">
+      <h1 class="page-title">Kontakt</h1>
+      <p class="page-subtitle">Napíšte mi o vašom projekte a dohodneme si úvodnú konzultáciu zadarmo</p>
+    </header>
+
+    @if (submitSuccess()) {
+      <app-card>
+        <div class="success-message">
+          <div class="success-icon">✓</div>
+          <h2>Ďakujem za správu!</h2>
+          <p>Ozvem sa vám do 24–48 hodín na vašej emailovej adrese.</p>
+        </div>
+      </app-card>
+    } @else {
+      <app-card>
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="name" class="form-label">
+                Meno <span class="required">*</span>
+              </label>
+              <input
+                type="text"
+                id="name"
+                formControlName="name"
+                class="form-input"
+                [class.error]="contactForm.get('name')?.invalid && contactForm.get('name')?.touched"
+                placeholder="Vaše meno"
+              />
+              @if (getErrorMessage('name')) {
+                <div class="error-message">{{ getErrorMessage('name') }}</div>
+              }
+            </div>
+
+            <div class="form-group">
+              <label for="email" class="form-label">
+                Email <span class="required">*</span>
+              </label>
+              <input
+                type="email"
+                id="email"
+                formControlName="email"
+                class="form-input"
+                [class.error]="contactForm.get('email')?.invalid && contactForm.get('email')?.touched"
+                placeholder="vas@email.sk"
+              />
+              @if (getErrorMessage('email')) {
+                <div class="error-message">{{ getErrorMessage('email') }}</div>
+              }
+            </div>
+
+            <div class="form-group">
+              <label for="topic" class="form-label">
+                Téma <span class="required">*</span>
+              </label>
+              <select
+                id="topic"
+                formControlName="topic"
+                class="form-select"
+                [class.error]="contactForm.get('topic')?.invalid && contactForm.get('topic')?.touched"
+              >
+                @for (topic of topics; track topic.value) {
+                  <option [value]="topic.value">{{ topic.label }}</option>
+                }
+              </select>
+              @if (getErrorMessage('topic')) {
+                <div class="error-message">{{ getErrorMessage('topic') }}</div>
+              }
+            </div>
+
+            <div class="form-group">
+              <label for="company" class="form-label">
+                Firma (nepovinné)
+              </label>
+              <input
+                type="text"
+                id="company"
+                formControlName="company"
+                class="form-input"
+                placeholder="Názov firmy"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="message" class="form-label">
+              Správa <span class="required">*</span>
+            </label>
+            <textarea
+              id="message"
+              formControlName="message"
+              class="form-textarea"
+              [class.error]="contactForm.get('message')?.invalid && contactForm.get('message')?.touched"
+              placeholder="Opíšte váš projekt alebo požiadavku..."
+              rows="6"
+            ></textarea>
+            @if (getErrorMessage('message')) {
+              <div class="error-message">{{ getErrorMessage('message') }}</div>
+            }
+          </div>
+
+          <!-- Honeypot field -->
+          <div class="honeypot" aria-hidden="true">
+            <label for="website">Website (nechajte prázdne)</label>
+            <input type="text" id="website" formControlName="website" tabindex="-1" />
+          </div>
+
+          <div class="form-group">
+            <label class="checkbox-label">
+              <input
+                type="checkbox"
+                formControlName="consent"
+                class="form-checkbox"
+              />
+              <span>
+                Súhlasím so spracovaním osobných údajov za účelom odpovede na túto správu. <span class="required">*</span>
+              </span>
+            </label>
+            @if (getErrorMessage('consent')) {
+              <div class="error-message">{{ getErrorMessage('consent') }}</div>
+            }
+          </div>
+
+          <div class="form-actions">
+            <app-button
+              type="submit"
+              variant="primary"
+              [disabled]="isSubmitting()"
+              ariaLabel="Odoslať správu"
+            >
+              @if (isSubmitting()) {
+                <span>Odosiela sa...</span>
+              } @else {
+                <span>Odoslať správu</span>
+              }
+            </app-button>
+          </div>
+        </form>
+      </app-card>
+    }
+  </div>
 </div>
+
